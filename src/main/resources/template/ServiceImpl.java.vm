@@ -1,0 +1,52 @@
+package ${package}.${servicePackage}.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+import ${package}.${daoPackage}.${className}${daoSuffix};
+import ${package}.${beanPackage}.${className}${beanSuffix};
+import ${package}.${servicePackage}.${className}Service;
+
+
+
+@Service("${classname}Service")
+public class ${className}ServiceImpl implements ${className}Service {
+	@Autowired
+	private ${className}${daoSuffix} ${classname}${daoSuffix};
+	
+	@Override
+	public ${className}${beanSuffix} get(${pk.attrType} ${pk.attrname}){
+		return ${classname}${daoSuffix}.selectByPrimaryKey(${pk.attrname});
+	}
+
+	@Override
+	public void save(${className}${beanSuffix} ${classname}){
+		${classname}${daoSuffix}.insertSelective(${classname});
+	}
+
+
+    @Override
+    public void updateByPrimaryKeySelective(${className}${beanSuffix} ${classname}){
+		${classname}${daoSuffix}.updateByPrimaryKeySelective(${classname});
+    }
+
+
+	@Override
+	public void update(${className}${beanSuffix} ${classname}){
+		${classname}${daoSuffix}.update(${classname});
+	}
+
+	@Override
+	public void delete(${pk.attrType} ${pk.attrname}){
+		${classname}${daoSuffix}.delete(${pk.attrname});
+	}
+	
+	@Override
+	public void deleteBatch(String ids){
+		${classname}${daoSuffix}.deleteByIds(ids);
+	}
+	
+}

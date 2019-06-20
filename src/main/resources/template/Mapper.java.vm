@@ -1,0 +1,17 @@
+package ${package}.${daoPackage};
+
+import ${package}.${beanPackage}.${className};
+import ${baseDao};
+##import org.apache.ibatis.annotations.Mapper;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+##@Mapper
+public interface ${className}${daoSuffix} extends ${baseDaoName}<${className}> {
+	
+}

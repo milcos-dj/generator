@@ -1,0 +1,28 @@
+package ${package}.${servicePackage};
+
+import ${package}.${beanPackage}.${className}${beanSuffix};
+
+import com.github.pagehelper.PageInfo;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Service {
+	
+	${className}${beanSuffix} get(${pk.attrType} ${pk.attrname});
+
+	void save(${className}${beanSuffix} ${classname});
+
+    void updateByPrimaryKeySelective(${className}${beanSuffix} ${classname});
+
+	void update(${className}${beanSuffix} ${classname});
+	void delete(${pk.attrType} ${pk.attrname});
+	void deleteBatch(String ids);
+}

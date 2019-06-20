@@ -1,0 +1,93 @@
+package ${package}.${controllerPackage};
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import ${package}.${beanPackage}.${className}${beanSuffix};
+import ${package}.${servicePackage}.${className}Service;
+
+import ${resultBean}
+
+
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+@RestController
+@RequestMapping("${pathName}")
+public class ${className}Controller {
+	@Autowired
+	private ${className}Service ${classname}Service;
+	
+
+    /**
+     * 分页列表查询
+     */
+    @RequestMapping("/listPage")
+##    @RequiresPermissions("${pathName}:list")
+    public ${resultBean} listPage(@RequestParam Map<String, Object> params){
+        //查询列表数据
+        Query query = new Query(params);
+
+        List<${className}${beanSuffix}> ${classname}List = ${classname}Service.listPage(query);
+
+        return ${resultBean}.ok("查询成功").setObj(${classname}List);
+    }
+
+	/**
+	 * 信息
+	 */
+	@RequestMapping("/info/{${pk.attrname}}")
+##	@RequiresPermissions("${pathName}:info")
+	public R info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
+		${className}${beanSuffix} ${classname} = ${classname}Service.get(${pk.attrname});
+		
+		return ${resultBean}.ok("查询成功").setObj(${classname});
+	}
+	
+	/**
+	 * 保存
+	 */
+	@RequestMapping("/save")
+	@RequiresPermissions("${pathName}:save")
+	public R save(@RequestBody ${className}${beanSuffix} ${classname}){
+		${classname}Service.save(${classname});
+		
+		return R.ok();
+	}
+	
+	/**
+	 * 修改
+	 */
+	@RequestMapping("/update")
+##	@RequiresPermissions("${pathName}:update")
+	public R update(@RequestBody ${className}${beanSuffix} ${classname}){
+		${classname}Service.updateByPrimaryKeySelective(${classname});
+		
+		return ${resultBean}.ok("修改成功");
+	}
+	
+	/**
+	 * 删除
+	 */
+	@RequestMapping("/delete")
+##	@RequiresPermissions("${pathName}:delete")
+	public R delete(@RequestBody ${pk.attrType} ${pk.attrname}){
+		${classname}Service.delete(${pk.attrname});
+		
+		return ${resultBean}.ok("删除成功");
+	}
+	
+}
